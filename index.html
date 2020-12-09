@@ -33,24 +33,39 @@
     <script type="text/javascript">
       // Initial array of movies
       var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+      var buttonsView = $("#buttons-view")
+      var queryURL = "http://www.omdbapi.com/?apikey=trilogy"
 
       // Function for displaying movie data
       function renderButtons() {
+        buttonsView.empty()
 
         for (var i = 0; i < movies.length; i++){
           var newBtn = $("<button>")
-          newBtn.text(movies[i])
+          newBtn.text(movies[i]).addClass("movie-btn")
           $("#buttons-view").append(newBtn)
         }
 
-
+        
       }
+      
+      buttonsView.on("click", ".movie-btn", function (){
+        var title = $(this).text()
+        $.ajax({
+          url: queryURL + "&t=" + title
+          
+        }).then(function (movieData){
+
+        })
+      })
+
 
       // This function handles events where one button is clicked
       $("#add-movie").on("click", function(event) {
         event.preventDefault()
         var userInput = $("#movie-input").val()
-        console.log(userInput)
+        movies.push(userInput)
+        renderButtons()
 
         // YOUR CODE GOES HERE
 
