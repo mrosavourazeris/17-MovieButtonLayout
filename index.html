@@ -37,12 +37,20 @@
       // Function for displaying movie data
       function renderButtons() {
 
-        // YOUR CODE GOES HERE
+        for (var i = 0; i < movies.length; i++){
+          var newBtn = $("<button>")
+          newBtn.text(movies[i])
+          $("#buttons-view").append(newBtn)
+        }
+
 
       }
 
       // This function handles events where one button is clicked
-      $("#add-movie").on("click", function() {
+      $("#add-movie").on("click", function(event) {
+        event.preventDefault()
+        var userInput = $("#movie-input").val()
+        console.log(userInput)
 
         // YOUR CODE GOES HERE
 
